@@ -91,51 +91,51 @@ export class VentasComponent implements OnInit {
   }
 
 // comienza la modificacion, luego la confirma con el metodo Grabar
-  Modificar(Dto) {
-    this.submitted = false;
-    this.FormRegistro.markAsUntouched();
-    this.BuscarPorId(Dto, 'M');
-  }
+  //Modificar(Dto) {
+    //this.submitted = false;
+    //this.FormRegistro.markAsUntouched();
+    //this.BuscarPorId(Dto, 'M');
+  //}
 
 // grabar tanto altas como modificaciones
-  Grabar() {
-  this.submitted = true;
+  //Grabar() {
+  //this.submitted = true;
      // verificar que los validadores esten OK
-     if (this.FormRegistro.invalid) {
-      return;
-     }
+     //if (this.FormRegistro.invalid) {
+      //return;
+     //}
 
     //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
-    const itemCopy = { ...this.FormRegistro.value };
+    //const itemCopy = { ...this.FormRegistro.value };
  
     //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.Fecha.substr(0, 10).split("/");
-    if (arrFecha.length == 3)
-      itemCopy.Fecha = 
-          new Date(
-            arrFecha[2],
-            arrFecha[1] - 1,
-            arrFecha[0]
-          ).toISOString();
+    //var arrFecha = itemCopy.Fecha.substr(0, 10).split("/");
+    //if (arrFecha.length == 3)
+      //itemCopy.Fecha = 
+          //new Date(
+            //arrFecha[2],
+            //arrFecha[1] - 1,
+            //arrFecha[0]
+          //).toISOString();
  
     // agregar post
-    if (this.AccionABMC == "A") {
-      this.ventasService.post(itemCopy).subscribe((res: any) => {
-        this.Volver();
-        this.modalDialogService.Alert('Registro agregado correctamente.');
-        this.Buscar();
-      });
-    } else {
+    //if (this.AccionABMC == "A") {
+      //this.ventasService.post(itemCopy).subscribe((res: any) => {
+        //this.Volver();
+        //this.modalDialogService.Alert('Registro agregado correctamente.');
+        //this.Buscar();
+      //});
+    //} else {
       // modificar put
-      this.ventasService
-        .put(itemCopy.IdVenta, itemCopy)
-        .subscribe((res: any) => {
-          this.Volver();
-          this.modalDialogService.Alert('Registro modificado correctamente.');
-          this.Buscar();
-        });
-    }
-  }
+      //this.ventasService
+        //.put(itemCopy.IdVenta, itemCopy)
+        //.subscribe((res: any) => {
+          //this.Volver();
+          //this.modalDialogService.Alert('Registro modificado correctamente.');
+          //this.Buscar();
+        //});
+    //}
+  //}
 
   // Volver desde Agregar/Modificar
   Volver() {

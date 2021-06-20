@@ -20,20 +20,19 @@ export class VentasService {
   get() {
     return this.httpClient.get(this.resourceUrl);
   }
+  //getById(Id: number) {
+    //return this.httpClient.get(this.resourceUrl + Id);
+  //}
 
-  getById(Id: number) {
-    return this.httpClient.get(this.resourceUrl + Id);
-  }
+  //post(obj:Venta) {
+    //return this.httpClient.post(this.resourceUrl, obj);
+  //}
 
-  post(obj:Venta) {
-    return this.httpClient.post(this.resourceUrl, obj);
-  }
+  //put(Id: number, obj:Venta) {
+    //return this.httpClient.put(this.resourceUrl + Id, obj);
+  //}
 
-  put(Id: number, obj:Venta) {
-    return this.httpClient.put(this.resourceUrl + Id, obj);
-  }
-
-  delete(Id) {
-    return this.httpClient.delete(this.resourceUrl + Id);
-  }
+  //delete(Id) {
+    //return this.httpClient.delete(this.resourceUrl + Id);
+  //}
 }
