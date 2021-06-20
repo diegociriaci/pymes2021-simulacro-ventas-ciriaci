@@ -66,22 +66,22 @@ export class VentasComponent implements OnInit {
 // Buscar segun los filtros, establecidos en FormRegistro
   Buscar() {
     this.ventasService.get().subscribe((res: any) => {
-        this.Items = res;
+        this.Items = res.Items;
         this.RegistrosTotal = res.RegistrosTotal;
       });
   }
 
   // Obtengo un registro especifico según el Id
   BuscarPorId(Dto, AccionABMC) {
-    window.scroll(0, 0); // ir al incio del scroll
-    this.ventasService.getById(Dto.IdVenta).subscribe((res: any) => {
-      this.FormRegistro.patchValue(res);
+    window.scroll(0, 0);
 
-      //formatear fecha de  ISO 8061 a string dd/MM/yyyy
-      var arrFecha = res.Fecha.substr(0, 10).split('-');
-      this.FormRegistro.controls.Fecha.patchValue(
-        arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0]
-      );
+    this.ventasService.get().subscribe((res: any) => {
+      const itemCopy = res.Items[Dto.IdVenta - 1];
+
+      var arrFecha = itemCopy.Fecha.substr(0, 10).split('-');
+      itemCopy.Fecha = arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0];
+
+      this.FormRegistro.patchValue(itemCopy);
       this.AccionABMC = AccionABMC;
     });
   }
